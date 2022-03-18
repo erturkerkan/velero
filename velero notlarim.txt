@@ -2,4 +2,7 @@ velero Notlarim
 
 Burada Velero ile ilgili notlarımı yayınlayacağım.
 
-deneme
+# kubernetes ortamında toplu işlem yapabilmek için for döngüsü kullanılır. Aşağıda tüm namesapacelerden scheduke silmek
+#için oluşturulmuş bir for döngüsü bulunmaktadır.
+
+for i in $(kubectl get schedules --all-namespaces |grep -v velero | awk '{print $1}'|grep -v NAMESPACE);do kubectl delete schedule $i -n  $i; done
